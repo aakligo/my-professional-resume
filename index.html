@@ -1,0 +1,305 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Atsu Akligo | Cloud Engineer Portfolio</title>
+
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: Arial, sans-serif;
+}
+
+body {
+background: #0f172a;
+color: white;
+line-height: 1.6;
+}
+
+header {
+background: linear-gradient(135deg, #0f172a, #1e40af);
+padding: 60px 10%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 40px;
+flex-wrap: wrap;
+}
+
+.hero-text {
+max-width: 600px;
+}
+
+.hero-text h1 {
+font-size: 48px;
+color: #38bdf8;
+}
+
+.hero-text h2 {
+font-size: 26px;
+margin: 15px 0;
+color: #e0f2fe;
+}
+
+.hero-text p {
+font-size: 18px;
+color: #cbd5e1;
+}
+
+.hero-img img {
+width: 330px;
+height: 330px;
+object-fit: cover;
+border-radius: 25px;
+border: 5px solid #38bdf8;
+box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+}
+
+nav {
+background: #020617;
+padding: 15px;
+text-align: center;
+position: sticky;
+top: 0;
+z-index: 10;
+}
+
+nav a {
+color: white;
+text-decoration: none;
+margin: 0 18px;
+font-weight: bold;
+}
+
+nav a:hover {
+color: #38bdf8;
+}
+
+section {
+padding: 60px 10%;
+}
+
+h2.section-title {
+text-align: center;
+font-size: 34px;
+color: #38bdf8;
+margin-bottom: 35px;
+}
+
+.card {
+background: #1e293b;
+padding: 30px;
+border-radius: 18px;
+box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+margin-bottom: 25px;
+}
+
+.skills {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+gap: 18px;
+}
+
+.skill {
+background: #020617;
+padding: 18px;
+text-align: center;
+border-radius: 12px;
+border: 1px solid #334155;
+color: #e0f2fe;
+font-weight: bold;
+}
+
+.projects {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+gap: 25px;
+}
+
+.project {
+background: #1e293b;
+padding: 25px;
+border-radius: 18px;
+border-top: 4px solid #38bdf8;
+}
+
+.project h3 {
+color: #7dd3fc;
+margin-bottom: 10px;
+}
+
+.contact {
+text-align: center;
+background: #020617;
+border-radius: 20px;
+}
+
+.contact a {
+color: #38bdf8;
+text-decoration: none;
+font-weight: bold;
+}
+
+footer {
+background: #020617;
+text-align: center;
+padding: 20px;
+color: #94a3b8;
+}
+
+.btn {
+display: inline-block;
+margin-top: 25px;
+padding: 14px 28px;
+background: #38bdf8;
+color: #020617;
+border-radius: 30px;
+text-decoration: none;
+font-weight: bold;
+}
+
+.btn:hover {
+background: white;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#experience">Experience</a>
+<a href="#projects">Projects</a>
+<a href="#contact">Contact</a>
+</nav>
+
+<header>
+<div class="hero-text">
+<h1>Atsu Emmanuel Akligo</h1>
+<h2>Cloud Engineer | Linux Administrator | DevOps Engineer</h2>
+<p>
+Cloud Engineer with 4 years of hands-on experience in Linux administration,
+AWS cloud infrastructure, web server deployment, user management,
+security groups, networking, automation, and troubleshooting.
+</p>
+<a class="btn" href="#contact">Contact Me</a>
+</div>
+
+<div class="hero-img">
+<img src="images/engineer.png" alt="Cloud Engineer at Work">
+</div>
+</header>
+
+<section id="about">
+<h2 class="section-title">About Me</h2>
+<div class="card">
+<p>
+I am a motivated Cloud Engineer with experience supporting Linux servers,
+deploying web applications, managing AWS EC2 instances, configuring security
+groups, troubleshooting server issues, and building cloud-based portfolio projects.
+I am passionate about cloud computing, DevOps, automation, and helping businesses
+run reliable and secure infrastructure.
+</p>
+</div>
+</section>
+
+<section id="skills">
+<h2 class="section-title">Technical Skills</h2>
+<div class="skills">
+<div class="skill">AWS EC2</div>
+<div class="skill">S3</div>
+<div class="skill">VPC</div>
+<div class="skill">IAM</div>
+<div class="skill">Security Groups</div>
+<div class="skill">Linux Ubuntu</div>
+<div class="skill">Nginx</div>
+<div class="skill">Apache2</div>
+<div class="skill">Docker</div>
+<div class="skill">Jenkins</div>
+<div class="skill">Git & GitHub</div>
+<div class="skill">Bash Scripting</div>
+</div>
+</section>
+
+<section id="experience">
+<h2 class="section-title">Professional Experience</h2>
+
+<div class="card">
+<h3>Cloud / Linux Administrator</h3>
+<p><strong>Experience:</strong> 4 Years</p>
+<p>
+Managed Linux systems, created users and groups, configured permissions,
+monitored server performance, installed web servers, deployed websites,
+supported AWS cloud resources, and troubleshot networking and service issues.
+</p>
+</div>
+
+<div class="card">
+<h3>Cloud Infrastructure Support</h3>
+<p>
+Worked with AWS EC2, VPC, EBS, security groups, SSH access, snapshots,
+and cloud networking concepts to build secure and available environments.
+</p>
+</div>
+</section>
+
+<section id="projects">
+<h2 class="section-title">Cloud Projects</h2>
+
+<div class="projects">
+<div class="project">
+<h3>AWS Resume Portfolio Website</h3>
+<p>
+Built and deployed a professional resume portfolio on an AWS EC2 Linux server
+using Apache/Nginx and custom HTML/CSS.
+</p>
+</div>
+
+<div class="project">
+<h3>Linux User Management Lab</h3>
+<p>
+Created users, groups, permissions, shared folders, and role-based access
+using real Linux administration commands.
+</p>
+</div>
+
+<div class="project">
+<h3>Jenkins on AWS</h3>
+<p>
+Installed and configured Jenkins on an AWS EC2 instance for DevOps
+automation and CI/CD learning.
+</p>
+</div>
+
+<div class="project">
+<h3>Dockerized Nginx Web App</h3>
+<p>
+Created a Docker container running Nginx and deployed a static website
+on a Linux cloud server.
+</p>
+</div> 
+</div>
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact Me</h2>
+<div class="card contact">
+<p><strong>Email:</strong> <a href="mailto:akligoatsu83@gmail.com;adjokoto2016@gmail.com">akligoatsu83@gmail.com</a></p>
+<p><strong>Phone:</strong> +1 678 760 8186</p>
+<p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/aakligo/">linkedin.com/in/aakligo</a></p>
+<p><strong>GitHub:</strong> <a href="https://github.com/aakligo">github.com/aakligo</a></p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Atsu Akligo | Cloud Engineer Portfolio</p>
+</footer>
+
+</body>
+</html>
