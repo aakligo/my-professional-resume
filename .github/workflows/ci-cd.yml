@@ -11,8 +11,30 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout the code
-              uses: actions/checkout@v2
+              uses: actions/checkout@v5
             - name: trivy Scan
-              run: trivy fs .
+              uses: aquasecurity/trivy-action@v0.36.0
+              with:
+               scan-type: 'fs'
+               severity: HIGH,CRITICAL
+               exit-code: 1
+            - name: build docker image
+              run: docker build -t 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest .
+            - name: Scan Docker Image with Trivy
+              uses: aquasecurity/trivy-action@0.36.0
+              with:
+                image-ref: 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
+                format: table
+                exit-code: 1
+                ignore-unfixed: true
+                severity: HIGH,CRITICAL
+            - name: push image to ecr
+              run: docker push 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
+              
+          
+
+          
+  
+            
 
 
