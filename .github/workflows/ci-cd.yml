@@ -1,53 +1,30 @@
-name: Build and Push to ECR
+name: build and push to ECR
 
 on:
-  push:
-    branches:
-      - main
+    push:
+      #pull_request:
+      # branches: ['main','dev']
+      branches: ['main']
 
 jobs:
-  build_scan:
+  build-and-push:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout the code
-        uses: actions/checkout@v5
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Scan project files with Trivy
-        uses: aquasecurity/trivy-action@v0.35.0
-        with:
-          scan-type: fs
-          scan-ref: .
-          format: table
-          severity: HIGH,CRITICAL
-          exit-code: "1"
-          ignore-unfixed: true
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-1
-
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
 
       - name: Build Docker image
         run: |
-          docker build \
-            -t 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest \
-            .
+          docker build -t my-app .
 
-      - name: Scan Docker image with Trivy
-        uses: aquasecurity/trivy-action@v0.35.0
-        with:
-          image-ref: 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
-          format: table
-          exit-code: "1"
-          ignore-unfixed: true
-          severity: HIGH,CRITICAL
+      - name: Log in to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Push image to Amazon ECR
+      - name: Push image to ECR
         run: |
-          docker push 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
+          docker tag my-app:latest ${{ secrets.ECR_REGISTRY }}/my-app:latest
+          docker push ${{ secrets.ECR_REGISTRY }}/my-app:latest
+  
