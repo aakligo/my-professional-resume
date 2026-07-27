@@ -18,6 +18,7 @@ jobs:
               scan-type: 'fs'
               severity: HIGH,CRITICAL'
               exit-code: 0
+
           
           - name: Build Docker Image
             run: docker build -t  301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest .
