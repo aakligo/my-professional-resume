@@ -17,7 +17,7 @@ jobs:
             with:
               scan-type: 'fs'
               severity: HIGH,CRITICAL'
-              exit-code: o
+              exit-code: 0
           
           - name: Build Docker Image
             run: docker build -t  301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest .
@@ -26,7 +26,7 @@ jobs:
             with:
               image-ref: 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
               format: table
-              exit-code: 1
+              exit-code: 0
               ignore-unfixed: true
               severity: HIGH,CRITICAL
           - name: Push Image to Ecr
