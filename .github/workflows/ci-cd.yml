@@ -1,40 +1,56 @@
-name: build and push to ECR
+name: Build and Push to ECR
 
 on:
-    push:
-        branches: ['main']
-    #pull_requests:
-    #  branches: [ 'main','dev' ]
+  push:
+    branches:
+      - main
 
 jobs:
-    build_scan:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout the code
-              uses: actions/checkout@v5
-            - name: trivy Scan
-              uses: aquasecurity/trivy-action@v0.35.0
-              with:
-               scan-type: 'fs'
-               severity: HIGH,CRITICAL
-               exit-code: 1
-            - name: build docker image
-              run: docker build -t 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest .
-            - name: Scan Docker Image with Trivy
-              uses: aquasecurity/trivy-action@0.35.0
-              with:
-                image-ref: 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
-                format: table
-                exit-code: 1
-                ignore-unfixed: true
-                severity: HIGH,CRITICAL
-            - name: push image to ecr
-              run: docker push 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
-              
-          
+  build_scan:
+    runs-on: ubuntu-latest
 
-          
-  
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v5
+
+      - name: Scan project files with Trivy
+        uses: aquasecurity/trivy-action@v0.35.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          format: table
+          severity: HIGH,CRITICAL
+          exit-code: "1"
+          ignore-unfixed: true
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Login to Amazon ECR
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build Docker image
+        run: |
+          docker build \
+            -t 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest \
+            .
+
+      - name: Scan Docker image with Trivy
+        uses: aquasecurity/trivy-action@v0.35.0
+        with:
+          image-ref: 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
+          format: table
+          exit-code: "1"
+          ignore-unfixed: true
+          severity: HIGH,CRITICAL
+
+      - name: Push image to Amazon ECR
+        run: |
+          docker push 301236973225.dkr.ecr.us-east-1.amazonaws.com/my_repo:latest
             
 
 
