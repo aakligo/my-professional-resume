@@ -16,7 +16,7 @@ jobs:
             uses: aquasecurity/trivy-action@v0.36.0
             with:
               scan-type: 'fs'
-              severity: HIGH,CRITICAL'
+              severity: "HIGH,CRITICAL"
               exit-code: 0
 
           
@@ -29,7 +29,7 @@ jobs:
               format: table
               exit-code: 0
               ignore-unfixed: true
-              severity: HIGH,CRITICAL
+              severity: "HIGH,CRITICAL"
           - name: Push Image to Ecr
 
             run: echo "push"
